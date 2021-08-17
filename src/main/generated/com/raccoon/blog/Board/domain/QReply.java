@@ -32,7 +32,7 @@ public class QReply extends EntityPathBase<Reply> {
 
     public final NumberPath<Long> rno = createNumber("rno", Long.class);
 
-    public final DateTimePath<java.sql.Timestamp> updatedate = createDateTime("updatedate", java.sql.Timestamp.class);
+    public final DateTimePath<java.sql.Timestamp> updateddate = createDateTime("updateddate", java.sql.Timestamp.class);
 
     public QReply(String variable) {
         this(Reply.class, forVariable(variable), INITS);

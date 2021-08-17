@@ -26,9 +26,6 @@ public class UserController {
 
     private final MemberRepository memberRepository;
     private final UserService userService;
-    private final PasswordEncoder pwEncoder;
-    private final AuthenticationManager authenticationManager;
-    private final JwtTokenProvider jwttokenprovider;
 
     @GetMapping("admin/users")
     public Iterable<Member> allUsers() {
@@ -42,24 +39,6 @@ public class UserController {
 
     @PostMapping("signin")
     public ResponseEntity<ReqDto> signIn (@RequestBody SignInDto signDto){
-
-        Member user = memberRepository.findById(signDto.getId())
-                .orElseThrow(() -> new IllegalArgumentException("no such data"));
-
-        UsernamePasswordAuthenticationToken authenticator = new UsernamePasswordAuthenticationToken(signDto.getId(), signDto.getPassword());
-        authenticationManager.authenticate(authenticator);
-
-        if (!pwEncoder.matches(signDto.getPassword(), user.getPassword()))
-            throw new IllegalArgumentException("no such data");
-        if (!pwEncoder.matches(signDto.getPassword(), user.getPassword()))
-            throw new IllegalArgumentException("no such data");
-
-        List<String> list = new ArrayList<String>();
-        user.getRoles().forEach(role -> list.add(role.getRoleName()));
-        String token =jwttokenprovider.createToken(user.getUid(), list);
-
-        ReqDto req = new ReqDto(user.getName(),token);
-
-        return new ResponseEntity<>(req,HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.signIn(signDto),HttpStatus.CREATED);
     }
 }

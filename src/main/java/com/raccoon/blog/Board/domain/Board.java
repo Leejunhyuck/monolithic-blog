@@ -29,7 +29,7 @@ public class Board {
     private Timestamp regdate;
 
     @UpdateTimestamp
-    private Timestamp updatedate;
+    private Timestamp updateddate;
 
     @OneToMany(mappedBy ="board", fetch =FetchType.LAZY)
     private List<Reply> replies;

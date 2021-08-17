@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService{
         user.getRoles().forEach(role -> list.add(role.getRoleName()));
         String token =jwttokenprovider.createToken(user.getUid(), list);
 
-        ReqDto reqDto = new ReqDto(user.getName(),token);
+        ReqDto reqDto = new ReqDto(user.getUname(),token);
 
         return reqDto;
     }

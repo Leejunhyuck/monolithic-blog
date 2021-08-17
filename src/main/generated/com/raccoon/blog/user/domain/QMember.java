@@ -20,8 +20,6 @@ public class QMember extends EntityPathBase<Member> {
 
     public static final QMember member = new QMember("member1");
 
-    public final StringPath name = createString("name");
-
     public final StringPath password = createString("password");
 
     public final DateTimePath<java.sql.Timestamp> regdate = createDateTime("regdate", java.sql.Timestamp.class);
@@ -29,6 +27,8 @@ public class QMember extends EntityPathBase<Member> {
     public final ListPath<MemberRole, QMemberRole> roles = this.<MemberRole, QMemberRole>createList("roles", MemberRole.class, QMemberRole.class, PathInits.DIRECT2);
 
     public final StringPath uid = createString("uid");
+
+    public final StringPath uname = createString("uname");
 
     public final DateTimePath<java.sql.Timestamp> updatedate = createDateTime("updatedate", java.sql.Timestamp.class);
 

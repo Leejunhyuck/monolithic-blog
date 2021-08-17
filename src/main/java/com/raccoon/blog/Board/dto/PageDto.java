@@ -1,6 +1,6 @@
 package com.raccoon.blog.Board.dto;
 
-import com.raccoon.blog.Board.domain.Board;
+
 import com.raccoon.blog.Board.vo.PageVO;
 import lombok.Getter;
 import lombok.Setter;

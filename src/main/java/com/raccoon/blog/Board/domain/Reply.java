@@ -27,7 +27,7 @@ public class Reply {
     private Timestamp regdate;
 
     @UpdateTimestamp
-    private Timestamp updatedate;
+    private Timestamp updateddate;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

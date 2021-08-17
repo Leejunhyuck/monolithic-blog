@@ -32,7 +32,7 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final StringPath title = createString("title");
 
-    public final DateTimePath<java.sql.Timestamp> updatedate = createDateTime("updatedate", java.sql.Timestamp.class);
+    public final DateTimePath<java.sql.Timestamp> updateddate = createDateTime("updateddate", java.sql.Timestamp.class);
 
     public final StringPath writer = createString("writer");
 

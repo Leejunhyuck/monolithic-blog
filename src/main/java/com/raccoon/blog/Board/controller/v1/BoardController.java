@@ -26,21 +26,20 @@ public class BoardController {
 
     @PostMapping("register")
     public ResponseEntity<Board> register(@RequestBody BoardDto boardDto) {
-        log.info("hello" + boardDto);
-
+        log.info("REGISTER BOARD" + boardDto);
         return new ResponseEntity<>(boardService.register(boardDto.toEntity()), HttpStatus.CREATED);
     }
 
     @GetMapping("list")
-    public ResponseEntity<Page> list(PageDto pageDto) {
-        log.info("hello" + pageDto);
+    public ResponseEntity<Page> getList(PageDto pageDto) {
+        log.info("GET BOARD LIST" + pageDto);
 
         return new ResponseEntity<>(boardService.getList(pageDto), HttpStatus.OK);
     }
 
     @PostMapping("delete")
     public ResponseEntity<Page> delete(Long bno, PageDto pageDto) {
-        log.info("delete..." + bno);
+        log.info("DELETE BOARD LIST" + bno);
 
         return new ResponseEntity<>(boardService.delete(bno, pageDto), HttpStatus.OK);
     }

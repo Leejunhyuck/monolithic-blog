@@ -39,9 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeRequests()
-                .antMatchers("/*/*/user/signin", "/*/*/signin/**", "/*/*/user/signup", "/*/*/signup/**", "/*/social/**","/*/board/**", "/*/*/user/**").permitAll()
+                .antMatchers("/*/*/user/signin", "/*/*/signin/**", "/*/*/user/signup", "/*/*/signup/**", "/*/social/**","/*/*/board/**", "/*/*/user/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/exception/**", "/helloworld/**").permitAll()
-                .anyRequest().hasRole("MANAGER")
+                .anyRequest().hasRole("ADMIN")
                 .and().exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler()).and()
                 .exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint()).and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),

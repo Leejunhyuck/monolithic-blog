@@ -69,5 +69,4 @@ public class PageVO {
         this.keyword = keyword;
         this.type = type ;
     }
-
 }

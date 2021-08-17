@@ -8,6 +8,7 @@ import com.raccoon.blog.Board.vo.PageVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,7 @@ public class BoardServiceImpl implements BoardService{
                 .build();
 
         Pageable page = pageVO.makePageable(0, "bno");
+
         Page<Board> result = repo.findAll(repo.makePredicate(pageDto.getType(), pageDto.getKeyword()), page);
 
         return result;

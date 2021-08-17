@@ -20,7 +20,7 @@ public class Member {
 
     private String password;
 
-    private String name;
+    private String uname;
 
     @CreationTimestamp
     private Timestamp regdate;
@@ -37,6 +37,7 @@ public class Member {
     Member(String uid, String password, String uname, List<MemberRole> roles){
         this.uid = uid;
         this.password = password;
+        this.uname = uname;
         this.roles = roles;
     }
 
