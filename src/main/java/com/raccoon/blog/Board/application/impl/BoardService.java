@@ -8,7 +8,7 @@ import org.springframework.data.domain.Page;
 public interface BoardService  {
     public Board register(Board board);
     public Page<Board> getList(PageDto pageDto);
-    public Page<Board> delete(Long bno, PageDto pageDto);
-    public Page<Board> modify(BoardDto boardDto, PageDto pageDto);
+    public void delete(BoardDto boardDto);
+    public void modify(BoardDto boardDto);
     public Board view(Long bno);
 }

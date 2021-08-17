@@ -37,21 +37,23 @@ public class BoardController {
         return new ResponseEntity<>(boardService.getList(pageDto), HttpStatus.OK);
     }
 
-    @PostMapping("delete")
-    public ResponseEntity<Page> delete(Long bno, PageDto pageDto) {
-        log.info("DELETE BOARD LIST" + bno);
+    @DeleteMapping("delete")
+    public ResponseEntity delete(@RequestBody BoardDto boardDto) {
+        log.info("DELETE BOARD");
 
-        return new ResponseEntity<>(boardService.delete(bno, pageDto), HttpStatus.OK);
+        boardService.delete(boardDto);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("modify")
-    public ResponseEntity<Page> modify(BoardDto boardDto, PageDto pageDto) {
-        log.info("modify..." + boardDto + pageDto);
+    @PutMapping("modify")
+    public ResponseEntity<Page> modify(@RequestBody BoardDto boardDto) {
+        log.info("MODIFY BOARD" );
 
-        return new ResponseEntity<>(boardService.modify(boardDto, pageDto), HttpStatus.OK);
+        boardService.modify(boardDto);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/view")
+    @GetMapping("view")
     public ResponseEntity<Board> view(Long bno) {
         log.info("BNO: " + bno);
 

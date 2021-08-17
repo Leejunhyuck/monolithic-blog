@@ -47,10 +47,9 @@ public class Board {
         this.replies = replies;
     }
 
-    public void modifyBoard (String title, String writer, String content){
+    public void modifyBoard (String title, String content){
         this.title = title;
         this.content = content;
-        this.writer = writer;
     }
 
 }
