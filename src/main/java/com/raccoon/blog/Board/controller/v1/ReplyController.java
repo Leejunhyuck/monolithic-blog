@@ -1,5 +1,6 @@
 package com.raccoon.blog.Board.controller.v1;
 
+import com.raccoon.blog.Board.application.impl.ReplayService;
 import com.raccoon.blog.Board.domain.Board;
 import com.raccoon.blog.Board.domain.Reply;
 import com.raccoon.blog.Board.dto.ReplyDto;
@@ -22,41 +23,22 @@ import java.util.List;
 @Log
 public class ReplyController {
     private final ReplyRepository replyRepo;
-    private final BoardRepository boardRepo;
+    private final ReplayService replayService;
 
     @GetMapping
     public ResponseEntity<List<Reply>> getReplies(@PathVariable("bno") Long bno){
-
-        log.info("get All Replies..........................");
-
-        Board board = Board.builder()
-                .bno(bno)
-                .build();
-
-        return new ResponseEntity<>(getListByBoard(board),HttpStatus.OK );
-
+        log.info("GET ALL REPLIES");
+        return new ResponseEntity<>(replayService.getListByBoard(bno),HttpStatus.OK );
     }
 
     @Transactional
     @PostMapping("/{bno}")
     public ResponseEntity<List<Reply>> addReply(@PathVariable("bno") Long bno, @RequestBody ReplyDto replyDto){
-
-        log.info("addReply..........................");
+        log.info("ADD REPLAY");
         log.info("BNO: " + bno);
         log.info("REPLY: " + replyDto);
 
-        Board board = Board.builder()
-                .bno(bno)
-                .build();
-
-        Reply reply = Reply.builder()
-                .board(board)
-                .build();
-
-        replyRepo.save(reply);
-
-        return new ResponseEntity<>(getListByBoard(board), HttpStatus.OK);
-
+        return new ResponseEntity<>(replayService.register(bno, replyDto), HttpStatus.OK);
     }
 
     @Transactional
@@ -65,7 +47,7 @@ public class ReplyController {
             @PathVariable("bno")Long bno,
             @PathVariable("rno")Long rno){
 
-        log.info("delete reply: "+ rno);
+        log.info("DELETE REPLY"+ rno);
 
         replyRepo.deleteById(rno);
 
@@ -73,7 +55,7 @@ public class ReplyController {
                 .bno(bno)
                 .build();
 
-        return  new ResponseEntity<>(getListByBoard(board), HttpStatus.OK);
+        return new ResponseEntity<>(getListByBoard(board), HttpStatus.OK);
 
     }
 
