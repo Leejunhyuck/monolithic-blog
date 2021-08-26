@@ -9,4 +9,6 @@ import java.util.List;
 public interface ReplayService {
     public List<Reply> register(long bno, ReplyDto replyDto);
     public List<Reply> getListByBoard(long bno);
+    public List<Reply> delete(long bno, long rno);
+    public List<Reply> modify(long bno, ReplyDto replyDto);
 }

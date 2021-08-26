@@ -46,42 +46,20 @@ public class ReplyController {
     public ResponseEntity<List<Reply>> remove(
             @PathVariable("bno")Long bno,
             @PathVariable("rno")Long rno){
-
         log.info("DELETE REPLY"+ rno);
-
-        replyRepo.deleteById(rno);
-
-        Board board = Board.builder()
-                .bno(bno)
-                .build();
-
-        return new ResponseEntity<>(getListByBoard(board), HttpStatus.OK);
-
+        return new ResponseEntity<>(replayService.delete(bno, rno), HttpStatus.OK);
     }
 
     @Transactional
     @PutMapping("/{bno}")
     public ResponseEntity<List<Reply>> modify(@PathVariable("bno")Long bno,
                                               @RequestBody ReplyDto replyDto){
-
         log.info("modify reply: "+ replyDto);
-
-        replyRepo.findById(replyDto.getRno()).ifPresent(origin -> {
-            origin.modifyReply(replyDto.getReplyText(),replyDto.getReplyer());
-            replyRepo.save(origin);
-        });
-
-        Board board = Board.builder()
-                .bno(bno)
-                .build();
-
-        return new ResponseEntity<>(getListByBoard(board), HttpStatus.OK);
+        return new ResponseEntity<>(replayService.modify(bno, replyDto), HttpStatus.OK);
     }
 
     private List<Reply> getListByBoard(Board board) throws RuntimeException{
-
         log.info("getListByBoard...." + board);
         return replyRepo.getRepliesOfBoard(board);
-
     }
 }

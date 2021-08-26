@@ -1,7 +1,7 @@
 package com.raccoon.blog.global.config.security;
 
-import com.raccoon.blog.user.domain.Member;
-import com.raccoon.blog.user.domain.MemberRole;
+import com.raccoon.blog.User.domain.Member;
+import com.raccoon.blog.User.domain.MemberRole;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ReplayServiceImpl implements ReplayService{
-    private final ReplyRepository replyRepo;
+    private final ReplyRepository replyRepository;
 
     @Override
     public List<Reply> getListByBoard(long bno) throws RuntimeException{
@@ -20,7 +20,34 @@ public class ReplayServiceImpl implements ReplayService{
                 .bno(bno)
                 .build();
 
-        return replyRepo.getRepliesOfBoard(board);
+        return replyRepository.getRepliesOfBoard(board);
+    }
+
+    @Override
+    public List<Reply> delete(long bno, long rno) {
+        Reply reply = replyRepository.findById(rno)
+                .orElseThrow(() -> new IllegalArgumentException("no such data"));
+
+        replyRepository.deleteById(rno);
+
+        Board board = Board.builder()
+                .bno(bno)
+                .build();
+
+        return replyRepository.getRepliesOfBoard(board);
+    }
+
+    @Override
+    public List<Reply> modify(long bno, ReplyDto replyDto) {
+        Reply originReply = replyRepository.findById(replyDto.getRno()).orElseThrow(() -> new IllegalArgumentException("no such data"));
+
+        originReply.modifyReply(replyDto.getReplyText(),replyDto.getReplyer());
+        replyRepository.save(originReply);
+
+        Board board = Board.builder()
+                .bno(bno)
+                .build();
+        return replyRepository.getRepliesOfBoard(board);
     }
 
     @Override
@@ -36,8 +63,10 @@ public class ReplayServiceImpl implements ReplayService{
                 .board(board)
                 .build();
 
-        replyRepo.save(reply);
+        replyRepository.save(reply);
 
-        return getListByBoard(bno);
+        return replyRepository.getRepliesOfBoard(board);
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.raccoon.blog.user.domain;
+package com.raccoon.blog.User.domain;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

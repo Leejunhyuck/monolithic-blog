@@ -1,7 +1,7 @@
-package com.raccoon.blog.user.dto;
+package com.raccoon.blog.User.dto;
 
-import com.raccoon.blog.user.domain.Member;
-import com.raccoon.blog.user.domain.MemberRole;
+import com.raccoon.blog.User.domain.Member;
+import com.raccoon.blog.User.domain.MemberRole;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.List;

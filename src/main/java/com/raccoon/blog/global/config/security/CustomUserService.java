@@ -1,6 +1,6 @@
 package com.raccoon.blog.global.config.security;
 
-import com.raccoon.blog.user.repository.MemberRepository;
+import com.raccoon.blog.User.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

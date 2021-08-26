@@ -1,22 +1,15 @@
-package com.raccoon.blog.user.controller.v1;
+package com.raccoon.blog.User.controller.v1;
 
-import com.raccoon.blog.global.config.jwt.JwtTokenProvider;
-import com.raccoon.blog.user.application.impl.UserService;
-import com.raccoon.blog.user.domain.Member;
-import com.raccoon.blog.user.dto.ReqDto;
-import com.raccoon.blog.user.dto.SignInDto;
-import com.raccoon.blog.user.dto.SignUpDto;
-import com.raccoon.blog.user.repository.MemberRepository;
+import com.raccoon.blog.User.application.impl.UserService;
+import com.raccoon.blog.User.domain.Member;
+import com.raccoon.blog.User.dto.ReqDto;
+import com.raccoon.blog.User.dto.SignInDto;
+import com.raccoon.blog.User.dto.SignUpDto;
+import com.raccoon.blog.User.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/user/*")

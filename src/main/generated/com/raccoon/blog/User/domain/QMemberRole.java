@@ -1,4 +1,4 @@
-package com.raccoon.blog.user.domain;
+package com.raccoon.blog.User.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 

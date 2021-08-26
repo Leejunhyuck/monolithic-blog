@@ -1,4 +1,4 @@
-package com.raccoon.blog.user.dto;
+package com.raccoon.blog.User.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
