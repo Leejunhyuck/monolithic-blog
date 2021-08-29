@@ -25,7 +25,7 @@ public class ReplyController {
     private final ReplyRepository replyRepo;
     private final ReplayService replayService;
 
-    @GetMapping
+    @GetMapping("/{bno}")
     public ResponseEntity<List<Reply>> getReplies(@PathVariable("bno") Long bno){
         log.info("GET ALL REPLIES");
         return new ResponseEntity<>(replayService.getListByBoard(bno),HttpStatus.OK );

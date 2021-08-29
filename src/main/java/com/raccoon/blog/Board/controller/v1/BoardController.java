@@ -15,7 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("api/v1/board/*")
+@RequestMapping("api/v1/boards/*")
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
@@ -24,40 +24,38 @@ public class BoardController {
     private final BoardRepository repo;
     private final BoardService boardService;
 
-    @PostMapping("register")
-    public ResponseEntity<Board> register(@RequestBody BoardDto boardDto) {
+    @PostMapping
+    public ResponseEntity<Board> saveBoard(@RequestBody BoardDto boardDto) {
         log.info("REGISTER BOARD" + boardDto);
         return new ResponseEntity<>(boardService.register(boardDto.toEntity()), HttpStatus.CREATED);
     }
 
-    @GetMapping("list")
-    public ResponseEntity<Page> getList(PageDto pageDto) {
+    @GetMapping
+    public ResponseEntity<Page> getBoardList(PageDto pageDto) {
         log.info("GET BOARD LIST" + pageDto);
 
         return new ResponseEntity<>(boardService.getList(pageDto), HttpStatus.OK);
     }
 
-    @DeleteMapping("delete")
-    public ResponseEntity delete(@RequestBody BoardDto boardDto) {
+    @DeleteMapping("/{bno}")
+    public ResponseEntity deleteBoard(@PathVariable Long id, @RequestBody BoardDto boardDto) {
         log.info("DELETE BOARD");
 
         boardService.delete(boardDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("modify")
-    public ResponseEntity<Page> modify(@RequestBody BoardDto boardDto) {
+    @PutMapping("/{bno}")
+    public ResponseEntity<Page> updateBoard(@PathVariable Long bno, @RequestBody BoardDto boardDto) {
         log.info("MODIFY BOARD" );
 
         boardService.modify(boardDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("view")
-    public ResponseEntity<Board> view(Long bno) {
+    @GetMapping("/{bno}")
+    public ResponseEntity<Board> view(@PathVariable Long bno) {
         log.info("BNO: " + bno);
-
-
         return new ResponseEntity<>(boardService.view(bno), HttpStatus.OK);
     }
 
